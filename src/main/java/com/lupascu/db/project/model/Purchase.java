@@ -1,27 +1,31 @@
 package com.lupascu.db.project.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.collect.Ordering;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Dish {
+public class Purchase {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
-    private String name;
-    @NotNull
-    private Double cost;
+
     @ManyToOne
-    @JsonIgnore
-    private Menu menu;
+    private Customer customer;
+
+    private Instant date;
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "purchase", orphanRemoval = true)
+    private List<OrderItem> orderItems = new ArrayList<>();
 }
