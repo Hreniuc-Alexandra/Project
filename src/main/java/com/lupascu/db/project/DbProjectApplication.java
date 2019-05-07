@@ -1,4 +1,4 @@
-package com.lupascu.dbProject;
+package com.lupascu.db.project;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

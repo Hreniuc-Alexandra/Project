@@ -1,4 +1,4 @@
-package com.lupascu.dbProject.model;
+package com.lupascu.db.project.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

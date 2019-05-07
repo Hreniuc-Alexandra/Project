@@ -1,4 +1,4 @@
-package com.lupascu.dbProject;
+package com.lupascu.db.project;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

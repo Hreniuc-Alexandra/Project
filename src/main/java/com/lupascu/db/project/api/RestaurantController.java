@@ -1,4 +1,4 @@
-package com.lupascu.dbProject.api;
+package com.lupascu.db.project.api;
 
 
 

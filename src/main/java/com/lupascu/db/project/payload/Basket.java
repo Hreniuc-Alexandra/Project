@@ -1,4 +1,4 @@
-package com.lupascu.dbProject.payload;
+package com.lupascu.db.project.payload;
 
 public class Basket {
     //dishes grupate pe numar (frequency map?)

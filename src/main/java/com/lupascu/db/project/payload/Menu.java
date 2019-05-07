@@ -1,6 +1,6 @@
-package com.lupascu.dbProject.payload;
+package com.lupascu.db.project.payload;
 
-import com.lupascu.dbProject.model.Dish;
+import com.lupascu.db.project.model.Dish;
 
 import java.util.ArrayList;
 import java.util.List;
