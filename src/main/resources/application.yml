@@ -1,0 +1,21 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+      dialect: org.hibernate.dialect.MySQL5Dialect
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+  datasource:
+    url: jdbc:mysql://aa1r5ki3mw3v4q9.crqr2khb6ff5.eu-central-1.rds.amazonaws.com/chronos_dev5?useSSL=false
+    username: chronos_dev5
+    password: chronos_dev5
+    initialization-mode: always
+    platform: mysql
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
