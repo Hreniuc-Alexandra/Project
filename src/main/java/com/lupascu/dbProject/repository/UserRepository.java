@@ -3,6 +3,7 @@ package com.lupascu.dbProject.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 //
@@ -11,7 +12,8 @@ import java.util.List;
 //    @Query(value= "SELECT * FROM users", nativeQuery = true)
 //    List<User> getUsers();
 //
-//    @Modifying
-//    @Query(value="INSERT INTO user(name, password) values (:name, :password)", nativeQuery = true)
-//    void insertUser(String name, String password);
-//}
+//
+//      @Modifying
+//      @Query(value="INSERT INTO role(id, name) values (:id, :name)", nativeQuery = true)
+//      void insertUser(@Param("id")Long id,@Param("name") String name);
+////}
