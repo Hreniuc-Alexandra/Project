@@ -19,6 +19,7 @@ public class Restaurant {
     private Long id;
     @NotBlank
     private String name;
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE, orphanRemoval = true)
+    @OneToOne(targetEntity = Menu.class, fetch = FetchType.EAGER)
+    @JoinColumn(nullable = false, name = "menu_id")
     private Menu menu;
 }
