@@ -1,7 +1,5 @@
 package com.lupascu.db.project.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.common.collect.Ordering;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

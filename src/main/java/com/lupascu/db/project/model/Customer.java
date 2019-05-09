@@ -30,4 +30,8 @@ public class Customer {
     private String token;
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "customer", orphanRemoval = true)
     private List<Purchase> orders = new ArrayList<>();
+
+    public Customer(String FirstName){
+        this.firstName=FirstName;
+    }
 }

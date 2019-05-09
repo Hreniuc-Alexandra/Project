@@ -20,3 +20,5 @@ INSERT INTO menu( discount_percent) VALUES(2);
 INSERT INTO menu( discount_percent) VALUES(3);
 INSERT INTO menu( discount_percent) VALUES(4);
 INSERT INTO menu( discount_percent) VALUES(5);
+
+INSERT INTO customer(email,first_name,last_name,token) VALUES('asdfg21341.2@yahodasd.com','gigi','gigescu','blabla');

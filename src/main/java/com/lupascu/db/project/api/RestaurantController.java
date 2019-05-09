@@ -4,6 +4,8 @@ package com.lupascu.db.project.api;
 import com.lupascu.db.project.model.Restaurant;
 import com.lupascu.db.project.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +19,7 @@ public class RestaurantController extends DBProjectController{
     private RestaurantService restaurantService;
 
     @GetMapping(RestaurantController.API_NAME)
-    public List<Restaurant> GetRestaurants(){
-        return restaurantService.getRestaurants();
+    public ResponseEntity<List<Restaurant>> GetRestaurants(){
+        return new ResponseEntity<>(restaurantService.getRestaurants(), HttpStatus.OK);
     }
 }
