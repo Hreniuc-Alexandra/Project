@@ -22,4 +22,7 @@ public class Restaurant {
     @OneToOne(targetEntity = Menu.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "menu_id")
     private Menu menu;
+
+    @NotBlank
+    private String imageUrl;
 }

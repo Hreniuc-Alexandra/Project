@@ -1,8 +1,10 @@
 package com.lupascu.db.project.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -17,9 +19,12 @@ public class Purchase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
 
+    @JsonIgnore
     @ManyToOne
+    @Nullable
     private Customer customer;
 
     private Instant date;

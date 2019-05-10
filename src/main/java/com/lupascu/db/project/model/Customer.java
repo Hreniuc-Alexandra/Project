@@ -1,5 +1,6 @@
 package com.lupascu.db.project.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ import java.util.List;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
     @NotBlank
     private String firstName;
@@ -28,8 +30,18 @@ public class Customer {
     private String email;
     @NotBlank
     private String token;
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "customer", orphanRemoval = true)
     private List<Purchase> orders = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 
     public Customer(String FirstName){
         this.firstName=FirstName;
