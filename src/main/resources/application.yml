@@ -1,10 +1,18 @@
 spring:
 
   jpa:
+#    properties:
+#      javax:
+#        persistence:
+#          schema-generation:
+#            create-source: metadata
+#            scripts:
+#             action: create
+#             create-target: create.sql
     hibernate:
       ddl-auto: create-drop
-      dialect: org.hibernate.dialect.MySQL5Dialect
-    database-platform: org.hibernate.dialect.MySQL5Dialect
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
 
   datasource:
     url: jdbc:mysql://aa1r5ki3mw3v4q9.crqr2khb6ff5.eu-central-1.rds.amazonaws.com/chronos_dev5?useSSL=false
@@ -33,11 +41,4 @@ logging:
   #    username: admin
   #    password: admin
   #    driver-class-name: org.h2.Driver
-  #      javax:
-  #        persistence:
-  #          schema-generation:
-  #            create-source: metadata
-  #            scripts:
-  #              action: drop-create
-  #              create-target: create.sql
-  #              drop-target: dropbla.sql
+

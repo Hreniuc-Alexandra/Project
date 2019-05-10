@@ -14,7 +14,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Boolean isTokenInDatabase(String token) throws TokenNotValidException {
-        Customer customer = customerRepository.getCustomerByToken(token).orElseThrow(()->new TokenNotValidException("This token does not exist"));
+        Customer customer = customerRepository.getCustomerByToken(token).orElseThrow(() -> new TokenNotValidException("This token does not exist"));
         return customer.getToken() != null;
     }
 }

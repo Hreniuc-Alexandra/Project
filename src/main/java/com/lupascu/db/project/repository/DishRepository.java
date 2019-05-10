@@ -7,11 +7,11 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
-public interface DishRepository extends JpaRepository<Dish,Long> {
+public interface DishRepository extends JpaRepository<Dish, Long> {
 
     @Query(value = "SELECT * FROM dish WHERE id=:id", nativeQuery = true)
     Optional<Dish> getDishById(@Param("id") Long id);
 
-    @Query(value = "SELECT * FROM dish WHERE name=:name",nativeQuery = true)
+    @Query(value = "SELECT * FROM dish WHERE name=:name", nativeQuery = true)
     Optional<Dish> getDishByName(@Param("name") String name);
 }

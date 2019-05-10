@@ -44,27 +44,35 @@ public class PurchaseServiceImpl implements PurchaseService {
 
     @Override
     public ResponseEntity processPurchase(PurchaseDTO purchaseDTO) throws CredentialException, TokenNotValidException, PurchaseException {
-        if(purchaseDTO.getToken()!=null && hasCredentials(purchaseDTO) && customerService.isTokenInDatabase(purchaseDTO.getToken())){
+        if (purchaseDTO.getOrders().isEmpty()) throw new PurchaseException("You have to order something.");
+        if (hasCredentials(purchaseDTO) && hasToken(purchaseDTO) && isFirstPurchase(purchaseDTO)) {
+            //prima cumparare(email si token unice nu sunt in db)
             return processFirstPurchase(purchaseDTO);
-        }
-        else if(purchaseDTO.getToken()!=null && !hasCredentials(purchaseDTO) && customerService.isTokenInDatabase(purchaseDTO.getToken()))
-        {
+        } else if (hasToken(purchaseDTO) && !hasCredentials(purchaseDTO)) {
+            //cumparari ulterioare, token in db, restul DTO gol
             return processPurchaseByToken(purchaseDTO);
-        }
-        else if(purchaseDTO.getToken()==null && hasCredentials(purchaseDTO)){
+        } else if (!hasToken(purchaseDTO) && hasCredentials(purchaseDTO)) {
+            //cumparare fara token => fara inserare customer in db
             return processPurchaseWithoutToken(purchaseDTO);
-        }
-        else throw new PurchaseException("Invalid purchase");
+        } else throw new PurchaseException("Invalid Credentials");
     }
 
-    public Boolean hasCredentials(PurchaseDTO purchaseDTO) throws CredentialException {
+    private Boolean isFirstPurchase(PurchaseDTO purchaseDTO) {
+        return !customerRepository.getCustomerByEmail(purchaseDTO.getEmail()).isPresent() && !customerRepository.getCustomerByToken(purchaseDTO.getToken()).isPresent();
+    }
+
+    public Boolean hasCredentials(PurchaseDTO purchaseDTO) {
         return purchaseDTO.getEmail() != null && purchaseDTO.getFirstName() != null && purchaseDTO.getLastName() != null;
     }
 
+    public Boolean hasToken(PurchaseDTO purchaseDTO) {
+        return purchaseDTO.getToken() != null;
+    }
+
     @Transactional
-    public ResponseEntity processPurchaseWithoutToken(PurchaseDTO purchaseDTO) throws PurchaseException {
+    public synchronized ResponseEntity processPurchaseWithoutToken(PurchaseDTO purchaseDTO) throws PurchaseException {
         try {
-            Long purchaseId=purchaseRepository.getLastId() + 1L;
+            Long purchaseId = purchaseRepository.getLastId() + 1L;
             purchaseRepository.insertPurchase(null);
             purchaseDTO.getOrders().forEach(orderItemDTO -> orderItemRepository.insertOrder(orderItemDTO.getQuantity(), orderItemDTO.getDishId(), purchaseId));
             return new ResponseEntity<>(new ApiResponse<>("Order added successfully.", null), HttpStatus.OK);
@@ -74,23 +82,24 @@ public class PurchaseServiceImpl implements PurchaseService {
     }
 
     @Transactional
-    public ResponseEntity processFirstPurchase(PurchaseDTO purchaseDTO) throws PurchaseException {
+    public synchronized ResponseEntity processFirstPurchase(PurchaseDTO purchaseDTO) throws PurchaseException {
         try {
-            Customer customer = customerRepository.insertUser(purchaseDTO.getEmail(), purchaseDTO.getFirstName(), purchaseDTO.getLastName(), purchaseDTO.getToken());
-            Long purchaseId=purchaseRepository.getLastId() + 1L;
-            purchaseRepository.insertPurchase(customer.getId());
+            Long customer = customerRepository.getLastId() + 1L;
+            customerRepository.insertUser(purchaseDTO.getEmail(), purchaseDTO.getFirstName(), purchaseDTO.getLastName(), purchaseDTO.getToken());
+            Long purchaseId = purchaseRepository.getLastId() + 1L;
+            purchaseRepository.insertPurchase(customer);
             purchaseDTO.getOrders().forEach(orderItemDTO -> orderItemRepository.insertOrder(orderItemDTO.getQuantity(), orderItemDTO.getDishId(), purchaseId));
             return new ResponseEntity<>(new ApiResponse<>("Order added successfully and customer added to database.", null), HttpStatus.OK);
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             throw new PurchaseException(e.getMessage());
         }
     }
+
     @Transactional
-    public ResponseEntity processPurchaseByToken(PurchaseDTO purchaseDTO) throws TokenNotValidException, PurchaseException {
+    public synchronized ResponseEntity processPurchaseByToken(PurchaseDTO purchaseDTO) throws  PurchaseException {
         try {
             Customer customer = customerRepository.getCustomerByToken(purchaseDTO.getToken()).orElseThrow(() -> new TokenNotValidException("Invalid token"));
-            Long purchaseId=purchaseRepository.getLastId() + 1L;
+            Long purchaseId = purchaseRepository.getLastId() + 1L;
             purchaseRepository.insertPurchase(customer.getId());
             purchaseDTO.getOrders().forEach(orderItemDTO -> orderItemRepository.insertOrder(orderItemDTO.getQuantity(), orderItemDTO.getDishId(), purchaseId));
             return new ResponseEntity<>(new ApiResponse<>("Order added successfully.", null), HttpStatus.OK);

@@ -1,3 +1,9 @@
+INSERT INTO menu( discount_percent) VALUES(1);
+INSERT INTO menu( discount_percent) VALUES(2);
+INSERT INTO menu( discount_percent) VALUES(3);
+INSERT INTO menu( discount_percent) VALUES(4);
+INSERT INTO menu( discount_percent) VALUES(5);
+
 INSERT INTO restaurant(name, menu_id, image_url) VALUES ('McBurgers',1,'imagine1');
 INSERT INTO restaurant(name, menu_id, image_url) VALUES ('Dominoes',2,'imagine2');
 INSERT INTO restaurant(name, menu_id, image_url) VALUES ('cv',3,'imagine3');
@@ -14,12 +20,6 @@ INSERT INTO dish(name,cost,menu_id) VALUES('bla6',55,4);
 INSERT INTO dish(name,cost,menu_id) VALUES('bla7',22,1);
 INSERT INTO dish(name,cost,menu_id) VALUES('bla8',232,4);
 INSERT INTO dish(name,cost,menu_id) VALUES('bla9',31,5);
-
-INSERT INTO menu( discount_percent) VALUES(1);
-INSERT INTO menu( discount_percent) VALUES(2);
-INSERT INTO menu( discount_percent) VALUES(3);
-INSERT INTO menu( discount_percent) VALUES(4);
-INSERT INTO menu( discount_percent) VALUES(5);
 
 INSERT INTO customer(email,first_name,last_name,token) VALUES('customerTest.1@genericmail.com','john','doe','dG9rZW4x');
 INSERT INTO customer(email,first_name,last_name,token) VALUES('customerTest.2@genericmail.com','jake','paul','dG9rZW4y');

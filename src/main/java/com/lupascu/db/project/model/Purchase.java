@@ -29,6 +29,6 @@ public class Purchase {
 
     private Instant date;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "purchase", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "purchase", orphanRemoval = true)
     private List<OrderItem> orderItems = new ArrayList<>();
 }

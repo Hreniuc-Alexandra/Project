@@ -9,14 +9,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class RestaurantServiceImpl implements RestaurantService{
+public class RestaurantServiceImpl implements RestaurantService {
 
     @Autowired
     private RestaurantRepository restaurantRepository;
 
     @Override
     @Transactional
-    public List<Restaurant> getRestaurants(){
+    public List<Restaurant> getRestaurants() {
         return restaurantRepository.getRestaurants();
     }
 }

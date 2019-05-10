@@ -1,11 +1,11 @@
 package com.lupascu.db.project.payload;
 
-import com.lupascu.db.project.exceptions.CredentialException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.Nullable;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Data
@@ -22,6 +22,7 @@ public class PurchaseDTO {
     @Nullable
     String token;
 
+    @NotEmpty(message = "You can't order nothing")
     List<OrderItemDTO> orders;
 
 }

@@ -19,7 +19,7 @@ public class Menu {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "menu", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "menu", orphanRemoval = true)
     private List<Dish> dishes = new ArrayList<>();
 
     private Double discountPercent;

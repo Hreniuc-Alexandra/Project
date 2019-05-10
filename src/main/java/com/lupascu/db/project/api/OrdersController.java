@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class OrdersController extends DBProjectController {
-    private static final String API_NAME="/orders";
+    private static final String API_NAME = "/orders";
 
     @Autowired
     private PurchaseService purchaseService;
@@ -23,12 +23,12 @@ public class OrdersController extends DBProjectController {
 
     @PostMapping(OrdersController.API_NAME)
     public ResponseEntity postPurchase(@RequestBody PurchaseDTO purchaseDTO) throws PurchaseException, CredentialException, TokenNotValidException {
-        return new ResponseEntity<>(new ApiResponse<>(null,purchaseService.processPurchase(purchaseDTO)), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse<>(null, purchaseService.processPurchase(purchaseDTO)), HttpStatus.OK);
     }
 
     @GetMapping(OrdersController.API_NAME)
-    public ResponseEntity getPurchasesForCustomer(@RequestParam(name="token") String token) throws PurchaseException, TokenNotValidException {
+    public ResponseEntity getPurchasesForCustomer(@RequestParam(name = "token") String token) throws PurchaseException, TokenNotValidException {
         customerService.isTokenInDatabase(token);
-        return new ResponseEntity<>(new ApiResponse<>(null,purchaseService.getPurchasesPerCustomer(token)), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse<>(null, purchaseService.getPurchasesPerCustomer(token)), HttpStatus.OK);
     }
 }
