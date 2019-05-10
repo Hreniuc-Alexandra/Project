@@ -22,6 +22,10 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     Long getLastId();
 
     @Modifying
+    @Query(value = "DELETE FROM customer WHERE token=:token",nativeQuery = true)
+    void deleteCustomerByToken(@Param("token") String token);
+
+    @Modifying
     @Query(value = "INSERT INTO customer(email, first_name, last_name, token) values (:email, :first_name, :last_name, :token)", nativeQuery = true)
     Integer insertUser(@Param("email") String email, @Param("first_name") String first_name, @Param("last_name") String last_name, @Param("token") String token);
 }
