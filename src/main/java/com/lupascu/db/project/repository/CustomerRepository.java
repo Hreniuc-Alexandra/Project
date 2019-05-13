@@ -22,7 +22,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     Long getLastId();
 
     @Modifying
-    @Query(value = "DELETE FROM customer WHERE token=:token",nativeQuery = true)
+    @Query(value = "DELETE FROM customer WHERE token=:token", nativeQuery = true)
     void deleteCustomerByToken(@Param("token") String token);
 
     @Modifying

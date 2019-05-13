@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -27,16 +28,14 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    @Transactional
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public ResponseEntity deleteCustomer(String token) throws TokenNotValidException {
-        try{
-            Long customer_id=customerRepository.getCustomerIdFromToken(token).orElseThrow(()->new TokenNotValidException("Invalid token"));
+        try {
+            Long customer_id = customerRepository.getCustomerIdFromToken(token).orElseThrow(() -> new TokenNotValidException("Invalid token"));
             purchaseRepository.preparePurchaseForCustomerDeletion(customer_id);
             customerRepository.deleteCustomerByToken(token);
-            return new ResponseEntity<>(new ApiResponse<>(null,"Customer deleted successfully."), HttpStatus.OK);
-        }
-        catch (Exception e)
-        {
+            return new ResponseEntity<>(new ApiResponse<>(null, "Customer deleted successfully."), HttpStatus.OK);
+        } catch (Exception e) {
             throw new TokenNotValidException(e.getMessage());
         }
 

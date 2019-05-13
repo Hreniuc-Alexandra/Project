@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CustomerController extends DBProjectController {
 
-    private static final String API_NAME="/customers";
+    private static final String API_NAME = "/customers";
 
     @Autowired
     private CustomerService customerService;

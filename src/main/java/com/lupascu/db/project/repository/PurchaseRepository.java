@@ -23,7 +23,7 @@ public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
     Long getLastId();
 
     @Modifying
-    @Query(value = "UPDATE purchase SET customer_id=null WHERE customer_id=:customer_id",nativeQuery = true)
+    @Query(value = "UPDATE purchase SET customer_id=null WHERE customer_id=:customer_id", nativeQuery = true)
     void preparePurchaseForCustomerDeletion(@Param("customer_id") Long customer_id);
 
     @Modifying

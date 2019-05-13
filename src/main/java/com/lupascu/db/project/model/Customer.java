@@ -33,7 +33,7 @@ public class Customer {
     @Column(unique = true)
     private String token;
     @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "customer", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer", orphanRemoval = true)
     private List<Purchase> orders = new ArrayList<>();
 
     public Customer(@NotBlank String firstName, @NotBlank String lastName, @NotBlank @Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$", message = "Email address is invalid") String email, @NotBlank String token) {
@@ -48,7 +48,7 @@ public class Customer {
         if (this == o) return true;
         if (!(o instanceof Customer)) return false;
         Customer customer = (Customer) o;
-        return  Objects.equals(firstName, customer.firstName) &&
+        return Objects.equals(firstName, customer.firstName) &&
                 Objects.equals(lastName, customer.lastName) &&
                 Objects.equals(email, customer.email) &&
                 Objects.equals(token, customer.token);
@@ -68,7 +68,7 @@ public class Customer {
                 '}';
     }
 
-    public Customer(String FirstName){
-        this.firstName=FirstName;
+    public Customer(String FirstName) {
+        this.firstName = FirstName;
     }
 }

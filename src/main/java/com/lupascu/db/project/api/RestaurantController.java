@@ -19,6 +19,6 @@ public class RestaurantController extends DBProjectController {
 
     @GetMapping(RestaurantController.API_NAME)
     public ResponseEntity<ApiResponse> GetRestaurants() {
-        return new ResponseEntity<>(new ApiResponse<>(null,restaurantService.getRestaurants()), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse<>(null, restaurantService.getRestaurants()), HttpStatus.OK);
     }
 }

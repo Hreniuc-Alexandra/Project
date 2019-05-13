@@ -12,9 +12,8 @@ import com.lupascu.db.project.repository.DishRepository;
 import com.lupascu.db.project.repository.OrderItemRepository;
 import com.lupascu.db.project.repository.PurchaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -69,40 +68,40 @@ public class PurchaseServiceImpl implements PurchaseService {
         return purchaseDTO.getToken() != null;
     }
 
-    @Transactional
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public ApiResponse processPurchaseWithoutToken(PurchaseDTO purchaseDTO) throws PurchaseException {
         try {
             Long purchaseId = purchaseRepository.getLastId() + 1L;
-            purchaseRepository.insertPurchase(null,purchaseDTO.getExtraFees());
+            purchaseRepository.insertPurchase(null, purchaseDTO.getExtraFees());
             purchaseDTO.getOrders().forEach(orderItemDTO -> orderItemRepository.insertOrder(orderItemDTO.getQuantity(), orderItemDTO.getDishId(), purchaseId));
-            return new ApiResponse<>(null,"Order added successfully.");
+            return new ApiResponse<>(null, "Order added successfully.");
         } catch (Exception e) {
             throw new PurchaseException(e.getMessage());
         }
     }
 
-    @Transactional
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public ApiResponse processFirstPurchase(PurchaseDTO purchaseDTO) throws PurchaseException {
         try {
             Long customer = customerRepository.getLastId() + 1L;
             customerRepository.insertUser(purchaseDTO.getEmail(), purchaseDTO.getFirstName(), purchaseDTO.getLastName(), purchaseDTO.getToken());
             Long purchaseId = purchaseRepository.getLastId() + 1L;
-            purchaseRepository.insertPurchase(customer,purchaseDTO.getExtraFees());
+            purchaseRepository.insertPurchase(customer, purchaseDTO.getExtraFees());
             purchaseDTO.getOrders().forEach(orderItemDTO -> orderItemRepository.insertOrder(orderItemDTO.getQuantity(), orderItemDTO.getDishId(), purchaseId));
-            return new ApiResponse<>(null,"Order added successfully and customer added to database.");
+            return new ApiResponse<>(null, "Order added successfully and customer added to database.");
         } catch (Exception e) {
             throw new PurchaseException(e.getMessage());
         }
     }
 
-    @Transactional
-    public ApiResponse processPurchaseByToken(PurchaseDTO purchaseDTO) throws  PurchaseException {
+    @Transactional(isolation = Isolation.SERIALIZABLE)
+    public ApiResponse processPurchaseByToken(PurchaseDTO purchaseDTO) throws PurchaseException {
         try {
             Customer customer = customerRepository.getCustomerByToken(purchaseDTO.getToken()).orElseThrow(() -> new TokenNotValidException("Invalid token"));
             Long purchaseId = purchaseRepository.getLastId() + 1L;
-            purchaseRepository.insertPurchase(customer.getId(),purchaseDTO.getExtraFees());
+            purchaseRepository.insertPurchase(customer.getId(), purchaseDTO.getExtraFees());
             purchaseDTO.getOrders().forEach(orderItemDTO -> orderItemRepository.insertOrder(orderItemDTO.getQuantity(), orderItemDTO.getDishId(), purchaseId));
-            return new ApiResponse<>(null,"Order added successfully.");
+            return new ApiResponse<>(null, "Order added successfully.");
         } catch (Exception e) {
             throw new PurchaseException(e.getMessage());
         }

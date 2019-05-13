@@ -1,7 +1,7 @@
-INSERT INTO menu( discount_percent) VALUES(1);
-INSERT INTO menu( discount_percent) VALUES(2);
-INSERT INTO menu( discount_percent) VALUES(3);
-INSERT INTO menu( discount_percent) VALUES(4);
+INSERT INTO menu( discount_percent) VALUES(15);
+INSERT INTO menu( discount_percent) VALUES(20);
+INSERT INTO menu( discount_percent) VALUES(0);
+INSERT INTO menu( discount_percent) VALUES(0);
 INSERT INTO menu( discount_percent) VALUES(5);
 
 INSERT INTO restaurant(name, menu_id, image_url) VALUES ('McBurgers',1,'imagine1');
