@@ -1,48 +1,49 @@
 	create table customer 
 		(
-			id 					bigint not null auto_increment, 
-			email 				varchar(255), 
-			first_name 			varchar(255), 
-			last_name 			varchar(255), 
-			token 				varchar(255), 
+			id 			bigint not null auto_increment, 
+			email 			varchar(255), 
+			first_name 		varchar(255), 
+			last_name 		varchar(255), 
+			token 			varchar(255), 
 			primary key 		(id)
 		) engine=InnoDB
 	create table dish 
 		(
-			id 					bigint not null auto_increment, 
-			cost 				double precision not null, 
-			name 				varchar(255), 
-			menu_id 			bigint, 
+			id 			bigint not null auto_increment, 
+			cost 			double precision not null, 
+			name 			varchar(255), 
+			menu_id 		bigint, 
 			primary key 		(id)
 		) engine=InnoDB
 	create table menu 
 		(
-			id 					bigint not null auto_increment, 
+			id 			bigint not null auto_increment, 
 			discount_percent	double precision, 
 			primary key 		(id), 
-			check 				(discount_percent<15)
+			check 			(discount_percent<15)
 		) engine=InnoDB
 	create table order_item 
 		(
-			id 					bigint not null auto_increment, 
-			quantity 			integer, 
-			dish_id 			bigint, 
+			id 			bigint not null auto_increment, 
+			quantity 		integer, 
+			dish_id 		bigint, 
 			purchase_id 		bigint, 
 			primary key 		(id)
 		) engine=InnoDB
 	create table purchase 
 		(
-		id 						bigint not null auto_increment, 
-		date 					datetime, 
+		id 				bigint not null auto_increment, 
+		date 				datetime, 
+		extra_fees 			double precision
 		customer_id 			bigint, 
 		primary key 			(id)
 		) engine=InnoDB
 	create table restaurant 
 		(
-		id 						bigint not null auto_increment, 
-		image_url 				varchar(255), 
-		name 					varchar(255), 
-		menu_id 				bigint not null, 
+		id 				bigint not null auto_increment, 
+		image_url 			varchar(255), 
+		name 				varchar(255), 
+		menu_id 			bigint not null, 
 		primary key 			(id)
 		) engine=InnoDB
 		
