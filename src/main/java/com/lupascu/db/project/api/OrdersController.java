@@ -23,7 +23,7 @@ public class OrdersController extends DBProjectController {
 
     @PostMapping(OrdersController.API_NAME)
     public ResponseEntity postPurchase(@RequestBody PurchaseDTO purchaseDTO) throws PurchaseException, CredentialException, TokenNotValidException {
-        return new ResponseEntity<>(new ApiResponse<>(null, purchaseService.processPurchase(purchaseDTO)), HttpStatus.OK);
+        return new ResponseEntity<>(purchaseService.processPurchase(purchaseDTO), HttpStatus.OK);
     }
 
     @GetMapping(OrdersController.API_NAME)

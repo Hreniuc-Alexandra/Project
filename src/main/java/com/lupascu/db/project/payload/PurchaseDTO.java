@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Positive;
 import java.util.List;
 
 @Data
@@ -21,6 +22,9 @@ public class PurchaseDTO {
     String lastName;
     @Nullable
     String token;
+
+    @Positive
+    Double extraFees;
 
     @NotEmpty(message = "You can't order nothing")
     List<OrderItemDTO> orders;

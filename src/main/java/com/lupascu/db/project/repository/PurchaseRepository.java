@@ -27,6 +27,6 @@ public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
     void preparePurchaseForCustomerDeletion(@Param("customer_id") Long customer_id);
 
     @Modifying
-    @Query(value = "INSERT INTO purchase(date, customer_id) values (now(), :customer_id)", nativeQuery = true)
-    Integer insertPurchase(@Param("customer_id") Long customer_id);
+    @Query(value = "INSERT INTO purchase(date, customer_id, extra_fees) values (now(), :customer_id, :extra_fees)", nativeQuery = true)
+    Integer insertPurchase(@Param("customer_id") Long customer_id, @Param("extra_fees") Double extra_fees);
 }
