@@ -34,7 +34,7 @@
 		(
 		id 				bigint not null auto_increment, 
 		date 				datetime, 
-		extra_fees 			double precision
+		extra_fees 			double precision,
 		customer_id 			bigint, 
 		primary key 			(id)
 		) engine=InnoDB
