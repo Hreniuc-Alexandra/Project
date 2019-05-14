@@ -1,44 +1,22 @@
 spring:
-
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
   jpa:
-    #    properties:
-    #      javax:
-    #        persistence:
-    #          schema-generation:
-    #            create-source: metadata
-    #            scripts:
-    #             action: create
-    #             create-target: create.sql
     hibernate:
       ddl-auto: create-drop
       dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-
   datasource:
     url: jdbc:mysql://aa1r5ki3mw3v4q9.crqr2khb6ff5.eu-central-1.rds.amazonaws.com/chronos_dev5?useSSL=false
     username: chronos_dev5
     password: chronos_dev5
     initialization-mode: always
     platform: mysql
-  jackson:
-    serialization:
-      write-dates-as-timestamps: true
 
 logging:
   level:
     org:
       hibernate:
         SQL: DEBUG
-
-
-  #DE TINUT MINTE
-  #  jpa:
-  #    hibernate:
-  #      ddl-auto: create-drop
-  #    database-platform: org.hibernate.dialect.H2Dialect
-  #  datasource:
-  #    url: jdbc:h2:~/test
-  #    username: admin
-  #    password: admin
-  #    driver-class-name: org.h2.Driver
 

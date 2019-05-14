@@ -8,6 +8,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
     @Modifying
-    @Query(value = "INSERT INTO order_item(quantity,dish_id,purchase_id) values (:quantity,:dish_id,:purchase_id)", nativeQuery = true)
+    @Query(value = "INSERT INTO order_items(quantity,dish_id,purchase_id) values (:quantity,:dish_id,:purchase_id)", nativeQuery = true)
     void insertOrder(@Param("quantity") Integer quantity, @Param("dish_id") Long dish_id, @Param("purchase_id") Long purchase_id);
 }

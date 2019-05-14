@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
-    @Query(value = "SELECT * FROM restaurant", nativeQuery = true)
-    List<Restaurant> getRestaurants();
+    @Query(value = "SELECT * FROM restaurants", nativeQuery = true)
+    List<Restaurant> getAll();
 }

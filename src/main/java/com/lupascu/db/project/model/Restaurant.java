@@ -1,5 +1,6 @@
 package com.lupascu.db.project.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,9 +12,11 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "restaurants")
 public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
     @NotBlank
     private String name;

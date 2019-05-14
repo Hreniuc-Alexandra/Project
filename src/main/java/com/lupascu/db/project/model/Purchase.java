@@ -15,6 +15,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "purchases")
 public class Purchase {
 
     @Id

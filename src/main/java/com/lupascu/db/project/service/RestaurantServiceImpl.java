@@ -17,6 +17,6 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     @Transactional
     public List<Restaurant> getRestaurants() {
-        return restaurantRepository.getRestaurants();
+        return restaurantRepository.getAll();
     }
 }

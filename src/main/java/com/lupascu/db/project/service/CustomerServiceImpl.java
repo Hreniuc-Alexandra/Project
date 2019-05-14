@@ -31,8 +31,8 @@ public class CustomerServiceImpl implements CustomerService {
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public ResponseEntity deleteCustomer(String token) throws TokenNotValidException {
         try {
-            Long customer_id = customerRepository.getCustomerIdFromToken(token).orElseThrow(() -> new TokenNotValidException("Invalid token"));
-            purchaseRepository.preparePurchaseForCustomerDeletion(customer_id);
+            Long customerId = customerRepository.getCustomerIdFromToken(token).orElseThrow(() -> new TokenNotValidException("Invalid token"));
+            purchaseRepository.decouplePurchaseFromCustomer(customerId);
             customerRepository.deleteCustomerByToken(token);
             return new ResponseEntity<>(new ApiResponse<>(null, "Customer deleted successfully."), HttpStatus.OK);
         } catch (Exception e) {

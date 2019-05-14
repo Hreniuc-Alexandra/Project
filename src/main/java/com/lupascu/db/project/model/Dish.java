@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "dishes")
 public class Dish {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

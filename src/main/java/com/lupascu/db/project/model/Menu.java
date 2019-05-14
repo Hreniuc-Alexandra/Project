@@ -1,5 +1,6 @@
 package com.lupascu.db.project.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,10 +14,12 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Check(constraints = "discount_percent<15")
+@Check(constraints = "discount_percent<16")
+@Table(name = "menus")
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "menu", orphanRemoval = true)

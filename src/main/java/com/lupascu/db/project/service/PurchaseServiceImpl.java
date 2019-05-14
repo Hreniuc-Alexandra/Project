@@ -60,11 +60,11 @@ public class PurchaseServiceImpl implements PurchaseService {
         return !customerRepository.getCustomerByEmail(purchaseDTO.getEmail()).isPresent() && !customerRepository.getCustomerByToken(purchaseDTO.getToken()).isPresent();
     }
 
-    public Boolean hasCredentials(PurchaseDTO purchaseDTO) {
+    private Boolean hasCredentials(PurchaseDTO purchaseDTO) {
         return purchaseDTO.getEmail() != null && purchaseDTO.getFirstName() != null && purchaseDTO.getLastName() != null;
     }
 
-    public Boolean hasToken(PurchaseDTO purchaseDTO) {
+    private Boolean hasToken(PurchaseDTO purchaseDTO) {
         return purchaseDTO.getToken() != null;
     }
 
@@ -106,8 +106,6 @@ public class PurchaseServiceImpl implements PurchaseService {
             throw new PurchaseException(e.getMessage());
         }
     }
-
-
 }
 
 
