@@ -1,9 +1,9 @@
 package com.lupascu.db.project.service;
 
-import com.lupascu.db.project.model.Restaurant;
+import com.lupascu.db.project.payload.RestaurantDTO;
 
 import java.util.List;
 
 public interface RestaurantService {
-    public List<Restaurant> getRestaurants();
+    public List<RestaurantDTO> getRestaurants();
 }
