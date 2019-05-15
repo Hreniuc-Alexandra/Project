@@ -42,7 +42,7 @@ public class PurchaseServiceImpl implements PurchaseService {
     }
 
     @Override
-    public ApiResponse processPurchase(PurchaseDTO purchaseDTO) throws CredentialException, TokenNotValidException, PurchaseException {
+    public ApiResponse processPurchase(PurchaseDTO purchaseDTO) throws CredentialException, PurchaseException {
         if (purchaseDTO.getOrders().isEmpty()) throw new PurchaseException("You have to order something.");
         if (hasCredentials(purchaseDTO) && hasToken(purchaseDTO) && isFirstPurchase(purchaseDTO)) {
             //prima cumparare(email si token unice nu sunt in db)
@@ -53,7 +53,7 @@ public class PurchaseServiceImpl implements PurchaseService {
         } else if (!hasToken(purchaseDTO) && hasCredentials(purchaseDTO)) {
             //cumparare fara token => fara inserare customer in db
             return processPurchaseWithoutToken(purchaseDTO);
-        } else throw new PurchaseException("Invalid Credentials");
+        } else throw new CredentialException("Invalid Credentials");
     }
 
     private Boolean isFirstPurchase(PurchaseDTO purchaseDTO) {
