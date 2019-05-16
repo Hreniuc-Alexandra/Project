@@ -10,35 +10,35 @@ INSERT INTO restaurants(name, menu_id, image_url) VALUES ('Popo Doco',3,'https:/
 INSERT INTO restaurants(name, menu_id, image_url) VALUES ('Pescarescu',4,'http://www.babydigezt.com/wp-content/uploads/2014/09/fish-food.jpg');
 INSERT INTO restaurants(name, menu_id, image_url) VALUES ('Cofetaria P.M.',5,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJoEO0fyxx6BiFXEO6nT6X3Ojb3Ojzvjf2lYC-o483o_fMpuK-');
 
-INSERT INTO dishes(name,cost,menu_id) VALUES('bla',23,1);
-INSERT INTO dishes(name,cost,menu_id) VALUES('bla1',31.50,1);
-INSERT INTO dishes(name,cost,menu_id) VALUES('bla2',19.75,1);
-INSERT INTO dishes(name,cost,menu_id) VALUES('bla3',12.50,1);
-INSERT INTO dishes(name,cost,menu_id) VALUES('bla4',14,1);
+INSERT INTO dishes(name,cost,menu_id) VALUES('McBig',23,1);
+INSERT INTO dishes(name,cost,menu_id) VALUES('McFancy',31.50,1);
+INSERT INTO dishes(name,cost,menu_id) VALUES('McNotCopyrightInfringed',19.75,1);
+INSERT INTO dishes(name,cost,menu_id) VALUES('McCopy',12.50,1);
+INSERT INTO dishes(name,cost,menu_id) VALUES('McPaste',14,1);
 
-INSERT INTO dishes(name,cost,menu_id) VALUES('bla5',26.30,2);
-INSERT INTO dishes(name,cost,menu_id) VALUES('bla6',55,2);
-INSERT INTO dishes(name,cost,menu_id) VALUES('bla7',22.50,2);
-INSERT INTO dishes(name,cost,menu_id) VALUES('bla8',21.25,2);
-INSERT INTO dishes(name,cost,menu_id) VALUES('bla9',31.50,2);
+INSERT INTO dishes(name,cost,menu_id) VALUES('Meniu Crispy',26.30,2);
+INSERT INTO dishes(name,cost,menu_id) VALUES('Meniu Crispy mai bun',55,2);
+INSERT INTO dishes(name,cost,menu_id) VALUES('Meniu fara crispy',22.50,2);
+INSERT INTO dishes(name,cost,menu_id) VALUES('Crispy fara meniu',21.25,2);
+INSERT INTO dishes(name,cost,menu_id) VALUES('Aripioare de student',31.50,2);
 
-INSERT INTO dishes(name,cost,menu_id) VALUES('bla5',35.50,3);
-INSERT INTO dishes(name,cost,menu_id) VALUES('bla6',55,3);
-INSERT INTO dishes(name,cost,menu_id) VALUES('bla7',72.50,3);
-INSERT INTO dishes(name,cost,menu_id) VALUES('bla8',74,3);
-INSERT INTO dishes(name,cost,menu_id) VALUES('bla9',78,3);
+INSERT INTO dishes(name,cost,menu_id) VALUES('Pizza petrecere',35.50,3);
+INSERT INTO dishes(name,cost,menu_id) VALUES('Pizza restanta',55,3);
+INSERT INTO dishes(name,cost,menu_id) VALUES('Pizza cu ananas',72.50,3);
+INSERT INTO dishes(name,cost,menu_id) VALUES('Pizza fara ananas',74,3);
+INSERT INTO dishes(name,cost,menu_id) VALUES('Popa Matei Cosmin',78,3);
 
-INSERT INTO dishes(name,cost,menu_id) VALUES('bla5',56,4);
-INSERT INTO dishes(name,cost,menu_id) VALUES('bla6',55,4);
-INSERT INTO dishes(name,cost,menu_id) VALUES('bla7',25.75,4);
-INSERT INTO dishes(name,cost,menu_id) VALUES('bla8',39.25,4);
-INSERT INTO dishes(name,cost,menu_id) VALUES('bla9',31.50,4);
+INSERT INTO dishes(name,cost,menu_id) VALUES('Icre de prepelita',56,4);
+INSERT INTO dishes(name,cost,menu_id) VALUES('Sushi de porc',55,4);
+INSERT INTO dishes(name,cost,menu_id) VALUES('Aripioare crocante de pastrav',25.75,4);
+INSERT INTO dishes(name,cost,menu_id) VALUES('Unagi',39.25,4);
+INSERT INTO dishes(name,cost,menu_id) VALUES('Somon la grill',31.50,4);
 
-INSERT INTO dishes(name,cost,menu_id) VALUES('Senzor de Inghetata',66.50,5);
+INSERT INTO dishes(name,cost,menu_id) VALUES('Senzor de ciocolata',66.50,5);
 INSERT INTO dishes(name,cost,menu_id) VALUES('Inghetata de Motor',50.50,5);
 INSERT INTO dishes(name,cost,menu_id) VALUES('Servo Papanasi',22.25,5);
 INSERT INTO dishes(name,cost,menu_id) VALUES('Maker Cake',26.75,5);
-INSERT INTO dishes(name,cost,menu_id) VALUES('Restanta',9.50,5);
+INSERT INTO dishes(name,cost,menu_id) VALUES('Restanta',78.50,5);
 
 INSERT INTO customers(email,first_name,last_name,token) VALUES('customerTest.1@genericmail.com','john','doe','dG9rZW4x');
 INSERT INTO customers(email,first_name,last_name,token) VALUES('customerTest.2@genericmail.com','jake','paul','dG9rZW4y');

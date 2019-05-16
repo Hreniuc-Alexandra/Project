@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,6 +31,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         restaurantDTO.setId(restaurant.getId());
         restaurantDTO.setImagine(restaurant.getImageUrl());
         restaurantDTO.setDisplayMenu(true);
+        restaurantDTO.setDiscount(restaurant.getMenu().getDiscountPercent());
         restaurantDTO.setNume(restaurant.getName());
         restaurantDTO.setMenu(menuToDTO(restaurant.getMenu()));
         return restaurantDTO;
@@ -39,7 +41,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         return menu.getDishes().stream().map(
                 dish-> new DishDTO(
                         dish.getName(),
-                        Double.parseDouble(String.format("%.2f",dish.getCost() - dish.getCost()*(menu.getDiscountPercent()/100))),
+                        Double.parseDouble(String.format(Locale.US,"%.2f",dish.getCost() - dish.getCost()*(menu.getDiscountPercent()/100))),
                         dish.getId())
         ).collect(Collectors.toList());
     }

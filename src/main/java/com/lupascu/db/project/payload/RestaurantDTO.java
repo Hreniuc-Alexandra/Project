@@ -15,4 +15,5 @@ public class RestaurantDTO {
     private String nume;
     private Boolean displayMenu;
     private List<DishDTO> menu;
+    private Double discount;
 }
