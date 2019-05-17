@@ -5,18 +5,17 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+      dialect: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.H2Dialect
   datasource:
-    url: #
-    username: #
-    password: #
-    initialization-mode: always
-    platform: mysql
+    url: jdbc:h2:~/test
+    username: admin
+    password: admin
+    #initialization-mode: always
+    #platform: mysql
 
 logging:
   level:
     org:
       hibernate:
         SQL: DEBUG
-
