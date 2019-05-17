@@ -18,4 +18,7 @@ public interface DishRepository extends JpaRepository<Dish, Long> {
 
     @Query(value = "SELECT * FROM dishes", nativeQuery = true)
     Optional<List<Dish>> getAll();
+
+    @Query(value = "SELECT * FROM dishes WHERE menu_id = SELECT menu_id FROM restaurants WHERE id=:restaurant_id", nativeQuery = true)
+    Optional<List<Dish>> getByRestaurant(@Param("restaurant_id") Long restaurantId);
 }

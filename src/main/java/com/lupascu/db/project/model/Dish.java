@@ -26,4 +26,6 @@ public class Dish {
     @ManyToOne
     @JsonIgnore
     private Menu menu;
+
+
 }
