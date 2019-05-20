@@ -75,40 +75,37 @@ class App extends Component {
       lastName:'',
       token:'',
       extraFees:'',
-      orders:[]
+      orders:[{dishId:16, quantity:1}]
     }
   }
 
   componentDidMount(){
     axios.get("http://localhost:8080/api/v1/restaurants").then(res=>{
       this.setState({restaurants: res.data.result})
-      console.log(res.data.result)
     });
   }
 
   editOrders = (orderId) =>{
-    console.log(orderId);
-    // let newOrderDto = this.state.orderDTO.orders.filter(stateOrder=>orderId===stateOrder.dishId).length===0?;
-    // console.log(newOrderDto);
+    console.log("----------------------------")
+    let newOrderDto=this.state.orderDTO.orders.filter(stateOrder=>orderId===stateOrder.dishId);
+    console.log("ORDER DTO ",newOrderDto);
+
+    if(newOrderDto.length===0){
+      Object.assign(newOrderDto, {dishId: orderId, quantity: 1})
+    }else{
+      newOrderDto[0].quantity=newOrderDto[0].quantity+1;
+    }
 
 
+    
 
+    let updatedState = this.state.orderDTO.orders.filter(stateOrder => orderId!==stateOrder.dishId);
 
+    console.log("UPDATED STATE ", updatedState)
+    updatedState.concat(newOrderDto);
 
-
-
-    //  let newOrderDto = this.state.orderDTO.orders.filter(stateOrder => orderId===stateOrder.dishId);
-    //  let updatedState = this.state.orderDTO.orders.filter(stateOrder => orderId!==stateOrder.dishId);
-
-    // if(newOrderDto.length===0){
-    //   Object.assign(newOrderDto,{quantity:1, dishId: orderId});
-    // }
-    // else{
-    //   newOrderDto.quantity = this.state.orderDTO.orders[orderId].quantity+1;
-    // }
-    // updatedState.concat(newOrderDto);
-    // console.log(newOrderDto);
-    // this.setState(Object.assign(this.state.orderDTO, updatedState))
+    this.setState(Object.assign(this.state.orderDTO, updatedState))
+  
   }
 
   showMenuHandler=(index)=>{
