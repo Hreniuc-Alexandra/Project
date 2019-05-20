@@ -75,7 +75,7 @@ class App extends Component {
       lastName:'',
       token:'',
       extraFees:'',
-      orders:[{dishId:16, quantity:1}]
+      orders:[]
     }
   }
 
@@ -86,45 +86,26 @@ class App extends Component {
   }
 
   editOrders = (orderId) =>{
-    console.log("----------------------------")
     let newOrderDto=this.state.orderDTO.orders.filter(stateOrder=>orderId===stateOrder.dishId);
-    console.log("ORDER DTO ",newOrderDto);
-
     if(newOrderDto.length===0){
-      Object.assign(newOrderDto, {dishId: orderId, quantity: 1})
+      newOrderDto = Object.assign({}, {dishId: orderId, quantity: 1})
     }else{
       newOrderDto[0].quantity=newOrderDto[0].quantity+1;
     }
-
-
-    
-
-    let updatedState = this.state.orderDTO.orders.filter(stateOrder => orderId!==stateOrder.dishId);
-
-    console.log("UPDATED STATE ", updatedState)
-    updatedState.concat(newOrderDto);
-
-    this.setState(Object.assign(this.state.orderDTO, updatedState))
+    let otherOrders = this.state.orderDTO.orders.filter(stateOrder => orderId!==stateOrder.dishId);
+    let updatedState=otherOrders.concat(newOrderDto);
+    this.setState(Object.assign(this.state.orderDTO.orders, updatedState))
   
   }
 
   showMenuHandler=(index)=>{
-    //let newSt = [...this.state.restaurants];
-    // console.log(index)
-    // newSt.forEach(rest => {
-    //   console.log(rest.id)
-    //   rest.id===index? rest.displayMenu=rest.displayMenu:rest.displayMenu=!rest.displayMenu
-    // })
-    console.log(this.state.orderDTO.orders)
     let newSt = this.state.restaurants[index];
     newSt.displayMenu = !newSt.displayMenu;
     this.setState(newSt);
   }
-
-  // myCartAdderHandler = event => console.log(dish.key)
-
-
+  
   render() {
+    
     return (
       <div className="App">
         <div className="zonaTaText">
