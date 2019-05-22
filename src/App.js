@@ -103,10 +103,9 @@ class App extends Component {
     newSt.displayMenu = !newSt.displayMenu;
     this.setState(newSt);
   }
-
-
+  
   render() {
-    console.log(this.state.orderDTO.orders)
+    
     return (
       <div className="App">
         <div className="zonaTaText">
@@ -125,7 +124,7 @@ class App extends Component {
               discount={restaurant.discount}/>
           })}
         </div>
-        </div>
+      </div>
     );
   }
 }
