@@ -31,10 +31,10 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     @Transactional
     public List<RestaurantDTO> getRestaurants() {
-//        List<Restaurant> restaurants = restaurantRepository.getAll();
         List<Long> restaurantIds = restaurantRepository.getIds();
-        List<Restaurant> restaurants = restaurantIds.stream()
+        List<Restaurant> restaurants = restaurantIds.stream().parallel()
                 .map(id -> {
+                    System.out.println("--------------------------OPERATION FOR "+ id);
                     String[] attrs = restaurantRepository.getAttributesForGivenId(id).split(",");
                     List<Dish> dishes = dishRepository.getByRestaurant(id).orElseGet(null);
                     Long menuId = restaurantRepository.getMenuId(id);
