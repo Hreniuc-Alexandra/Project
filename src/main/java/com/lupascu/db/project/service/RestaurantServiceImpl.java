@@ -65,7 +65,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     private List<DishDTO> menuToDTO(Menu menu) {
-        return menu.getDishes().stream().map(
+        return menu.getDishes().stream().parallel().map(
                 dish -> new DishDTO(
                         dish.getName(),
                         Double.parseDouble(String.format(Locale.US, "%.2f", dish.getCost() - dish.getCost() * (menu.getDiscountPercent() / 100))),
