@@ -1,0 +1,22 @@
+spring:
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  datasource:
+    url: ${PRJ_DB_URL}
+    username: ${PRJ_DB_USER}
+    password: ${PRJ_DB_PASS}
+    #driver-class-name: com.mysql.jdbc.Driver
+    #initialization-mode: always
+    platform: mysql
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
