@@ -17,7 +17,6 @@ import javax.validation.constraints.NotNull;
 public class Dish {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
     private Long id;
     @NotBlank
     private String name;
