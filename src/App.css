@@ -3,10 +3,22 @@
   background-size: 100%;
 }
 
+.cosDeCumparaturi{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.inputuri{
+  display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
 
 .zonaTaText
 {
-  margin-top:150px;
+  margin-top:60px;
   margin-bottom: 100px;
   text-align: center;
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;

@@ -14,6 +14,7 @@ const styles = theme => ({
     marginRight: theme.spacing.unit,
     width: 250,
   },
+  
 });
 
 const TextFieldMargins = props => {
@@ -26,7 +27,7 @@ const TextFieldMargins = props => {
         id="emailField"
         defaultValue=""
         className={classes.textField}
-        helperText="Email Address"
+        helperText="E-mail"
         margin="dense"
         onChange={ props.onChange('email')}
       />
@@ -34,7 +35,7 @@ const TextFieldMargins = props => {
         id="firstNameField"
         defaultValue=""
         className={classes.textField}
-        helperText="First Name"
+        helperText="Prenume"
         margin="dense"
         onChange={props.onChange('firstName')}
       />
@@ -42,7 +43,7 @@ const TextFieldMargins = props => {
         id="lastNameField"
         defaultValue=""
         className={classes.textField}
-        helperText="Last Name"
+        helperText="Nume"
         margin="dense"
         onChange={props.onChange('lastName')}
       />
