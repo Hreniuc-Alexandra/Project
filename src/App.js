@@ -74,10 +74,18 @@ class App extends Component {
     newOrderDto.extraFees=extraF;
     this.setState(Object.assign(this.state.orderDTO, newOrderDto))
 
+    
     axios.post("http://localhost:8080/api/v1/orders", this.state.orderDTO).then(res=>{
       console.log(res.data)
-    })
+      alert(res.data.result)
+    }).catch(error=> this.state.orderDTO.orders.length===0? alert("Cosul de cumparaturi e gol!"): alert("Date incorecte!") )
+  }
 
+  deleteUserHandler=()=>{
+    let userToken=this.state.orderDTO.token;
+    axios.delete("http://localhost:8080/api/v1/customers?token="+userToken, userToken).then(res=>{
+      alert("Utilizatorul a fost sters!")
+    }).catch(error=>alert("Token invalid!"))
   }
   
   render() {
@@ -97,7 +105,10 @@ class App extends Component {
           </div>
         </div>
         <div>  
-          <OutlinedButtons onClick={()=>{this.orderButtonHandler()}}/>
+          <OutlinedButtons buttonName="Comanda!" onClick={()=>{this.orderButtonHandler()}}/>
+        </div>
+        <div>  
+          <OutlinedButtons buttonName="Sterge user cu tokenul!" onClick={()=>{this.deleteUserHandler()}}/>
         </div>
         <div className="zonaTaText">
           Restaurante din zona ta!

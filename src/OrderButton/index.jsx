@@ -22,7 +22,7 @@ function OutlinedButtons(props) {
   return (
     <div className={classes.buttonContainer}>
       <Button onClick={props.onClick} variant="outlined" className={classes.button}>
-        Comanda!
+        {props.buttonName}
       </Button>
     </div>
   );
