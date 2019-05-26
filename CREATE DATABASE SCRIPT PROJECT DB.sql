@@ -20,7 +20,7 @@
 			id 			bigint not null auto_increment, 
 			discount_percent	double precision, 
 			primary key 		(id), 
-			check 			(discount_percent<15)
+			check 			(discount_percent<16)
 		) engine=InnoDB;
 	create table order_item 
 		(
